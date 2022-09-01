@@ -33,47 +33,61 @@ function writePassword() {
 
   // If user chooses a valid number, run next function
   else if (passwordLength >= 8 && passwordLength <= 128) {
-    passwordCharacters();
+    characterTypePrompt();
   }
 
-  //If user chooses enters something other than a number
+  // If user chooses enters something other than a number
  else if (passwordLength === NaN) {
   return;
  }
 
- else {
-  specialCharacterPrompt();
- }
+ // Choose character types
+ function characterTypePrompt() {
+ // Ask user if the password should include numbers
+var includeNumbers = window.confirm('Include numbers?');
+
+// If user pressed ok, includeNumbers = true and we ask the user if the password should include lower case characters
+var includeLower = window.confirm('Include lower case characters?');
+
+// If user pressed ok, includeLower = true and we ask the user if the password should include upper case characters
+var includeUpper = window.confirm('Include upper case characters?');
+
+// If user pressed ok, includeUpper = true and we ask the user if the password should include special characters
+var includeSpecial = window.confirm('include special characters?');
+
+// If user pressed ok, includeSpecial = true and we generate the password based on the user selections
+
+generatePassword();
+
+}
+
 
  // Define generate password function
 
  function generatePassword () {
 
-  // alphanumeric array
-  var abc123 = [0,1,2,3,4,5,6,7,8,9,'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+  // alphabet array
+  var alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
   // special character array
-  var special = [0,1,2,3,4,5,6,7,8,9,'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',' ','!','"','#','$','%','&',"'",'(',')','*','+',',','-','.','/',':',';','<','>','=','?','@','[',']','^','_','`','{','}','|','~'];
+  var special = [' ','!','"','#','$','%','&',"'",'(',')','*','+',',','-','.','/',':',';','<','>','=','?','@','[',']','^','_','`','{','}','|','~'];
+  // numeric array
+  var numbers = [0,1,2,3,4,5,6,7,8,9];
+  // uppercase array
+  var upperAbc = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+  // Combined character array
+  var characters = [alphabet,special,numbers,upperAbc];
 
-  // Generate random character from special character array
-  function specialRandom() {
-    return (math.floor(math.random() * special.length) * passwordLength);
+  // Confirm choices
+  if (
+    (includeNumbers = true) &&
+    (includeLower = true) &&
+    (includeUpper = true) &&
+    (includeSpecial = true)) {
+
+  // Generate random index number of characters array    
+    var index = Math.floor(Math.random() * characters.length);
+    password = characters[index];
   }
-
-  // Generate random character from alphanumeric array
-  function abc123Random() {
-    return (math.floow(math.random() * abc123.length));
-  }
-
-  // Confirm if special characters are required
- if (speciaCharacter === true) {
-  specialRandom();
- }
-
- else {
-
-  abc123Random();
-
- }
 
  }
 
