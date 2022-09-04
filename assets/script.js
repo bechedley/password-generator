@@ -5,28 +5,11 @@ var generateBtn = document.querySelector("#generate");
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-  
- // Combined character array 
-  var characters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',' ','!','"','#','$','%','&',"'",'(',')','*','+',',','-','.','/',':',';','<','>','=','?','@','[',']','^','_','`','{','}','|','~',0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+  passwordText.value = password;}
 
-    // alphabet array
-   var alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
-    // special character array
-    var special = [' ','!','"','#','$','%','&',"'",'(',')','*','+',',','-','.','/',':',';','<','>','=','?','@','[',']','^','_','`','{','}','|','~'];
-    // numeric array
-    var numbers = [0,1,2,3,4,5,6,7,8,9];
-    // uppercase array
-    var upperAbc = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+  // Define function to generate password
 
-  
-
-  passwordText.value = password;
-
-  // Define generatePassword function
-
-  function generatePassword() {
-
-     // Define function to generate password
+  function generatePassword () {
 
   // Add function message for password length error
 
@@ -38,8 +21,7 @@ function writePassword() {
     // Add function message for character type error
   function characterTypeError() {
     window.alert('Sorry, your password must contain at least one character type. Please try again.')
-      
-    characterTypePrompt();
+      characterTypePrompt();
   }
 
   // Add prompt window for password length
@@ -66,295 +48,405 @@ function writePassword() {
   }
 
   // If user chooses enters something other than a number
- else if (passwordLength === NaN) {
+ else if (passwordLength === NaN) 
   return;
- }
+ 
 
  // Choose character types
  function characterTypePrompt() {
+
  // Ask user if the password should include numbers
-var includeNumbers = window.confirm('Include numbers?');
+var includeNumbers = confirm('Include numbers?');
 
 // If user pressed ok, includeNumbers = true and we ask the user if the password should include lower case characters
-var includeLower = window.confirm('Include lower case characters?');
+var includeLower = confirm('Include lower case characters?');
 
 // If user pressed ok, includeLower = true and we ask the user if the password should include upper case characters
-var includeUpper = window.confirm('Include upper case characters?');
+var includeUpper = confirm('Include upper case characters?');
 
 // If user pressed ok, includeUpper = true and we ask the user if the password should include special characters
-var includeSpecial = window.confirm('include special characters?');
+var includeSpecial = confirm('include special characters?');
 
 // If user pressed ok, includeSpecial = true and we generate the password based on the user selections
   
 // Confirm choices to determine appropriate function
-  if ((includeLower = true) &&
-      (includeUpper = true) &&
-      (includeSpecial = true) &&
-      (includeNumbers = true)) {
+  if (includeLower == true &&
+      includeUpper == true &&
+      includeSpecial == true &&
+      includeNumbers == true) {
 
-        generateLUSN();}
+        generateLUSN();
+      return;
+    }
 
+else if (includeLower == true &&
+includeUpper != true &&
+includeSpecial != true &&
+includeNumbers != true) {
 
-  // Use lower case as default if no other character types are chosen
-  else if ((includeLower = false) &&
-  (includeUpper = false) &&
-  (includeSpecial = false) &&
-  (includeNumbers = false)) {
-
-    characterTypeError();
+  generateL();
+return;
 }
 
-else if ((includeLower = true) &&
-(includeUpper = false) &&
-(includeSpecial = false) &&
-(includeNumbers = false)) {
+else if (includeLower != true &&
+includeUpper == true &&
+includeSpecial != true &&
+includeNumbers != true) {
 
-  generateL();}
+  generateU();
+return;}
 
-else if ((includeLower = false) &&
-(includeUpper = true) &&
-(includeSpecial = false) &&
-(includeNumbers = false)) {
+else if (includeLower != true &&
+includeUpper != true &&
+includeSpecial == true &&
+includeNumbers != true) {
 
-  generateU();}
+  generateS();
+return;}
 
-else if ((includeLower = false) &&
-(includeUpper = false) &&
-(includeSpecial = true) &&
-(includeNumbers = false)) {
+else if (includeLower != true &&
+includeUpper != true &&
+includeSpecial != true &&
+includeNumbers == true) {
 
-  generateS();}
+  generateN();
+return;}
 
-else if ((includeLower = false) &&
-(includeUpper = false) &&
-(includeSpecial = false) &&
-(includeNumbers = true)) {
+else if (includeLower == true &&
+includeUpper == true &&
+includeSpecial != true &&
+includeNumbers != true) {
 
-  generateN();}
+  generateLU();
+return;}
 
-else if ((includeLower = true) &&
-(includeUpper = true) &&
-(includeSpecial = false) &&
-(includeNumbers = false)) {
-
-  generateLU();}
-
-else if ((includeLower = true) &&
-(includeUpper = false) &&
-(includeSpecial = true) &&
-(includeNumbers = false)) {
+else if (includeLower == true &&
+includeUpper != true &&
+includeSpecial == true &&
+includeNumbers != true) {
   
-  generateLS();}
+  generateLS();
+return;}
 
-else if ((includeLower = true) &&
-(includeUpper = false) &&
-(includeSpecial = false) &&
-(includeNumbers = true)) {
+else if (includeLower == true &&
+includeUpper != true &&
+includeSpecial != true &&
+includeNumbers == true) {
 
-generateLN();}
+generateLN();
+return;}
 
-else if ((includeLower = false) &&
-(includeUpper = true) &&
-(includeSpecial = true) &&
-(includeNumbers = false)) {
+else if (includeLower != true &&
+includeUpper == true &&
+includeSpecial == true &&
+includeNumbers != true) {
 
-  generateUS();}
+  generateUS();
+return;}
 
-else if ((includeLower = false) &&
-(includeUpper = true) &&
-(includeSpecial = false) &&
-(includeNumbers = true)) {
+else if (includeLower != true &&
+includeUpper == true &&
+includeSpecial != true &&
+includeNumbers == true) {
 
-  generateUN();}
+  generateUN();
+return;}
 
-else if ((includeLower = false) &&
-(includeUpper = false) &&
-(includeSpecial = true) &&
-(includeNumbers = true)) {
+else if (includeLower != true &&
+includeUpper != true &&
+includeSpecial == true &&
+includeNumbers == true) {
 
-  generateSN();}
+  generateSN();
+return;}
 
-else if ((includeLower = true) &&
-(includeUpper = true) &&
-(includeSpecial = true) &&
-(includeNumbers = false)) {
+else if (includeLower == true &&
+includeUpper == true &&
+includeSpecial == true &&
+includeNumbers != true) {
 
-  generateLUS();}
+  generateLUS();
+return;}
 
-else if ((includeLower = true) &&
-(includeUpper = true) &&
-(includeSpecial = false) &&
-(includeNumbers = true)) {
+else if (includeLower == true &&
+includeUpper == true &&
+includeSpecial != true &&
+includeNumbers == true) {
 
-  generateLUN();}
+  generateLUN();
+return;}
 
-else if ((includeLower = true) &&
-(includeUpper = false) &&
-(includeSpecial = true) &&
-(includeNumbers = true)) {
+else if (includeLower == true &&
+includeUpper != true &&
+includeSpecial == true &&
+includeNumbers == true) {
 
-  generateLSN();}
+  generateLSN();
+return;}
 
-else if ((includeLower = false) &&
-(includeUpper = true) &&
-(includeSpecial = true) &&
-(includeNumbers = true)) {
+else if (includeLower != true &&
+includeUpper == true &&
+includeSpecial == true &&
+includeNumbers == true) {
 
-  generateUSN();}
-}
+  generateUSN();
+return;}
+
+
+else if (includeLower != true &&
+  includeUpper != true &&
+  includeSpecial != true &&
+  includeNumbers != true)
+
+  characterTypeError();
+
+  }
 
 // Define functions and array variables for each choice
 
 function generateLUSN() {
 
-  var allCharacters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',' ','!','"','#','$','%','&',"'",'(',')','*','+',',','-','.','/',':',';','<','>','=','?','@','[',']','^','_','`','{','}','|','~',0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+  var allCharacters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',' ','!','"','#','$','%','&',"'",'(',')','*','+',',','-','.','/',':',';','<','>','=','?','@','[',']','^','_','`','{','}','|','~',0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 
-  var indexLUSN = Math.floor(Math.random() * allCharacters.length);
-  var passwordLUSN = allCharacters[indexLUSN];
+  // Access user password length from function
 
-  window.alert("Your password is " + passwordLUSN);
+  // Create a for loop to set the password length
+  let passwordLUSN = '';
+
+  for (i = 0; i < passwordLength; i++) {
+    
+    var indexLUSN = (Math.floor(Math.random() * allCharacters.length))
+    passwordLUSN += allCharacters[indexLUSN] + '';}
+
+  window.alert('Your password is ' + passwordLUSN);
+
+
+  return;
+
 }
 
 function generateL() {
 
-  var lower = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+  var lower = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 
-  var indexL = Math.floor(Math.random() * lower.length);
-  var passwordL = lower[indexL];
+  let passwordL = '';
 
-  window.alert("Your password is " + passwordL);
+  for (i = 0; i < passwordLength; i++) {
+    
+    var indexL = (Math.floor(Math.random() * lower.length))
+    passwordL += lower[indexL] + '';}
+
+  window.alert('Your password is ' + passwordL);
+
+  return;
 }
 
 function generateU() {
 
-  var upper = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+  var upper = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 
-  var indexU = Math.floor(Math.random() * upper.length);
-  var passwordU = upper[indexU];
+  let passwordU = '';
 
-  window.alert("Your password is " + passwordU);
+  for (i = 0; i < passwordLength; i++) {
+    
+    var indexU = (Math.floor(Math.random() * upper.length))
+    passwordU += upper[indexU] + '';}
+
+  window.alert('Your password is ' + passwordU);
+
+  return;
 }
 
 function generateS() {
 
-  var specials = [' ','!','"','#','$','%','&',"'",'(',')','*','+',',','-','.','/',':',';','<','>','=','?','@','[',']','^','_','`','{','}','|','~']
+  var specials = [' ','!','"','#','$','%','&',"'",'(',')','*','+',',','-','.','/',':',';','<','>','=','?','@','[',']','^','_','`','{','}','|','~'];
 
-  var indexS = Math.floor(Math.random() * specials.length);
-  var passwordS = specials[indexS];
+  let passwordS = '';
 
-  window.alert("Your password is " + passwordS);
+  for (i = 0; i < passwordLength; i++) {
+    
+    var indexS = (Math.floor(Math.random() * specials.length))
+    passwordS += specials[indexS] + '';}
+
+  window.alert('Your password is ' + passwordS);
+
+  return;
 }
 
 function generateN() {
 
-  var number = [0,1,2,3,4,5,6,7,8,9]
+  var number = [0,1,2,3,4,5,6,7,8,9];
 
-  var indexN = Math.floor(Math.random() * special.number);
-  var passwordN = number[indexN];
+  let passwordN = '';
 
-  window.alert("Your password is " + passwordN);
+  for (i = 0; i < passwordLength; i++) {
+    
+    var indexN = (Math.floor(Math.random() * number.length))
+    passwordN += number[indexN] + '';}
+
+  window.alert('Your password is ' + passwordN);
+
+  return;
 }
 
 function generateLU() {
 
-  var lowerUpper  = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+  var lowerUpper  = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 
-  var indexLU = Math.floor(Math.random() * lowerUpper.length);
-  var passwordLU = lowerUpper[indexLU];
+  let passwordLU = '';
 
-  window.alert("Your password is " + passwordLU);
+  for (i = 0; i < passwordLength; i++) {
+    
+    var indexLU = (Math.floor(Math.random() * lowerUpper.length))
+    passwordLU += lowerUpper[indexLU] + '';}
+
+  window.alert('Your password is ' + passwordLU);
+
+  return;
 }
 
 function generateLS() {
 
-  var lowerSpecial  = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',' ','!','"','#','$','%','&',"'",'(',')','*','+',',','-','.','/',':',';','<','>','=','?','@','[',']','^','_','`','{','}','|','~']
+  var lowerSpecial  = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',' ','!','"','#','$','%','&',"'",'(',')','*','+',',','-','.','/',':',';','<','>','=','?','@','[',']','^','_','`','{','}','|','~'];
 
-  var indexLS = Math.floor(Math.random() * lowerSpecial.length);
-  var passwordLS = lowerSpecial[indexLS];
+  let passwordLS = '';
 
-  window.alert("Your password is " + passwordLS);
+  for (i = 0; i < passwordLength; i++) {
+    
+    var indexLS = (Math.floor(Math.random() * lowerSpecial.length))
+    passwordLS += lowerSpecial[indexLS] + '';}
+
+  window.alert('Your password is ' + passwordLS);
+
+  return;
 }
 
 function generateLN() {
 
-  var lowerNumber  = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',0,1,2,3,4,5,6,7,8,9]
+  var lowerNumber  = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',0,1,2,3,4,5,6,7,8,9];
 
-  var indexLN = Math.floor(Math.random() * lowerNumber.length);
-  var passwordLN = lowerNumber[indexLN];
+  let passwordLN = '';
 
-  window.alert("Your password is " + passwordLN);
+  for (i = 0; i < passwordLength; i++) {
+    
+    var indexLN = (Math.floor(Math.random() * lowerNumber.length))
+    passwordLN += lowerNumber[indexLN] + '';}
+
+  window.alert('Your password is ' + passwordLN);
+
+  return;
 }
 
 function generateUS() {
 
-  var upperSpecial  = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',' ','!','"','#','$','%','&',"'",'(',')','*','+',',','-','.','/',':',';','<','>','=','?','@','[',']','^','_','`','{','}','|','~']
+  var upperSpecial  = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',' ','!','"','#','$','%','&',"'",'(',')','*','+',',','-','.','/',':',';','<','>','=','?','@','[',']','^','_','`','{','}','|','~'];
 
-  var indexUS = Math.floor(Math.random() * upperSpecial.length);
-  var passwordUS = upperSpecial[indexUS];
+  let passwordUS = '';
 
-  window.alert("Your password is " + passwordUS);
+  for (i = 0; i < passwordLength; i++) {
+    
+    var indexUS = (Math.floor(Math.random() * upperSpecial.length))
+    passwordUS += upperSpecial[indexUS] + '';}
+
+  window.alert('Your password is ' + passwordUS);
+
+  return;
 }
 
 function generateUN() {
 
-  var upperNumber  = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',0,1,2,3,4,5,6,7,8,9]
+  var upperNumber  = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',0,1,2,3,4,5,6,7,8,9];
 
-  var indexUN = Math.floor(Math.random() * upperNumber.length);
-  var passwordUN = upperNumber[indexUN];
+  let passwordUN = '';
 
-  window.alert("Your password is " + passwordUN);
+  for (i = 0; i < passwordLength; i++) {
+    
+    var indexUN = (Math.floor(Math.random() * upperNumber.length))
+    passwordUN += upperNumber[indexUN] + '';}
+
+  window.alert('Your password is ' + passwordUN);
+
+  return;
 }
 
 function generateSN() {
 
-  var specialNumber  = [' ','!','"','#','$','%','&',"'",'(',')','*','+',',','-','.','/',':',';','<','>','=','?','@','[',']','^','_','`','{','}','|','~',0,1,2,3,4,5,6,7,8,9]
+  var specialNumber  = [' ','!','"','#','$','%','&',"'",'(',')','*','+',',','-','.','/',':',';','<','>','=','?','@','[',']','^','_','`','{','}','|','~',0,1,2,3,4,5,6,7,8,9];
 
-  var indexSN = Math.floor(Math.random() * specialNumber.length);
-  var passwordSN = specialNumber[indexSN];
+  let passwordSN = '';
 
-  window.alert("Your password is " + passwordSN);
+  for (i = 0; i < passwordLength; i++) {
+    
+    var indexSN = (Math.floor(Math.random() * specialNumber.length))
+    passwordSN += specialNumber[indexSN] + '';}
+
+  window.alert('Your password is ' + passwordSN);
+
+  return;
 }
 
 function generateLUS() {
 
-  var lowerUS  = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',' ','!','"','#','$','%','&',"'",'(',')','*','+',',','-','.','/',':',';','<','>','=','?','@','[',']','^','_','`','{','}','|','~']
+  var lowerUS  = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',' ','!','"','#','$','%','&',"'",'(',')','*','+',',','-','.','/',':',';','<','>','=','?','@','[',']','^','_','`','{','}','|','~'];
 
-  var indexLUS = Math.floor(Math.random() * lowerUS.length);
-  var passwordLUS = lowerUS[indexLUS];
+  let passwordLUS = '';
 
-  window.alert("Your password is " + passwordLUS);
+  for (i = 0; i < passwordLength; i++) {
+    
+    var indexLUS = (Math.floor(Math.random() * lowerUS.length))
+    passwordLUS += lowerUS[indexLUS] + '';}
+
+    window.alert('Your password is ' + passwordLUS);
+
+  return;
 }
 
 function generateLUN() {
 
-  var lowerUN  = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',0,1,2,3,4,5,6,7,8,9]
+  var lowerUN  = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',0,1,2,3,4,5,6,7,8,9];
 
-  var indexLUN = Math.floor(Math.random() * lowerUN.length);
-  var passwordLUN = lowerUN[indexLUN];
+  let passwordLUN = '';
 
-  window.alert("Your password is " + passwordLUN);
+  for (i = 0; i < passwordLength; i++) {
+    
+    var indexLUN = (Math.floor(Math.random() * lowerUN.length))
+    passwordLUN += lowerUN[indexLUN] + '';}
+
+  window.alert('Your password is ' + passwordLUN);
+
+  return;
 }
 
 function generateLSN() {
 
-  var lowerSN  = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',' ','!','"','#','$','%','&',"'",'(',')','*','+',',','-','.','/',':',';','<','>','=','?','@','[',']','^','_','`','{','}','|','~',0,1,2,3,4,5,6,7,8,9]
+  var lowerSN  = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',' ','!','"','#','$','%','&',"'",'(',')','*','+',',','-','.','/',':',';','<','>','=','?','@','[',']','^','_','`','{','}','|','~',0,1,2,3,4,5,6,7,8,9];
 
-  var indexLSN = Math.floor(Math.random() * lowerSN.length);
-  var passwordLSN = lowerSN[indexLSN];
+  let passwordLSN = '';
 
-  window.alert("Your password is " + passwordLSN);
+  for (i = 0; i < passwordLength; i++) {
+    
+    var indexLSN = (Math.floor(Math.random() * lowerSN.length))
+    passwordLSN += lowerSN[indexLSN] + '';}
+
+  window.alert('Your password is ' + passwordLSN);
+
+  return;
 }
 
 function generateUSN() {
 
-  var upperSN  = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',' ','!','"','#','$','%','&',"'",'(',')','*','+',',','-','.','/',':',';','<','>','=','?','@','[',']','^','_','`','{','}','|','~',0,1,2,3,4,5,6,7,8,9]
+  var upperSN  = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',' ','!','"','#','$','%','&',"'",'(',')','*','+',',','-','.','/',':',';','<','>','=','?','@','[',']','^','_','`','{','}','|','~',0,1,2,3,4,5,6,7,8,9];
 
-  var indexUSN = Math.floor(Math.random() * upperSN.length);
-  var passwordUSN = upperSN[indexUSN];
+  let passwordUSN = '';
 
-  window.alert("Your password is " + passwordUSN);
-}
+  for (i = 0; i < passwordLength; i++) {
+    
+    var indexUSN = (Math.floor(Math.random() * upperSN.length))
+    passwordUSN += upperSN[indexUSN] + '';}
 
+  window.alert('Your password is ' + passwordUSN);
+
+  return;
 }}
 
 // Add event listener to generate button
